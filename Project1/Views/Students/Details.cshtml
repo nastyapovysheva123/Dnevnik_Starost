@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Project1.Models.Student>
+
+@{
+    ViewBag.Title = "Список студентов";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="container body-content">
+        <h2>@ViewBag.Title</h2>
+       
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Список студентов", "Index", "Students")</li>
+                        <li>@Html.ActionLink("Полный список студентов", "Details", "Students")</li>
+                        <li>@Html.ActionLink("Примечание", "About", "Home")</li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            @Html.ActionLink("Выйти", "LogOff", "Account", routeValues: null, htmlAttributes: new { title = "Выйти из учетной записи" })
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <p>
+            @Html.ActionLink("Добавить нового студента", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Имя
+                </th>
+                <th>
+                    Фамилия
+                </th>
+                <th>
+                    Отчество
+                </th>
+                <th>
+                    Дата рождения
+                </th>
+                <th>
+                    Номер телефона
+                </th>
+                <th>
+                    Адрес
+                </th>
+                <th>
+                    E-mail
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patronymic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Birthday)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+               
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+            }
+
+        </table>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
+

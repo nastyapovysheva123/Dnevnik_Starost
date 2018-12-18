@@ -1,0 +1,122 @@
+﻿@model Project1.Models.Student
+
+@{
+    ViewBag.Title = "Удалить";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Список студентов", "Index", "Students")</li>
+                    <li>@Html.ActionLink("Полный список студентов", "Details", "Students")</li>
+                    <li>@Html.ActionLink("Примечание", "About", "Home")</li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @Html.ActionLink("Выйти", "LogOff", "Account", routeValues: null, htmlAttributes: new { title = "Выйти из учетной записи" })
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <h3>Вы действительно хотите удалить?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Имя
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    Фамилия
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Surname)
+                </dd>
+
+                <dt>
+                    Отчество
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Patronymic)
+                </dd>
+
+                <dt>
+                    Дата рождения
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Birthday)
+                </dd>
+
+                <dt>
+                    Номер телефона
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Phone)
+                </dd>
+
+                <dt>
+                    Адрес
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+
+                <dt>
+                    E-mail
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Удалить" class="btn btn-default" /> |
+                    @Html.ActionLink("Показать весь список студентов", "Index")
+                </div>
+            }
+        </div>
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+        <hr />
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
+
+
